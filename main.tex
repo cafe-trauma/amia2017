@@ -5,6 +5,9 @@
 \usepackage{color}
 \usepackage{wrapfig}
 
+\usepackage[draft]{todonotes}
+%\usepackage[disable]{todonotes}
+
 \begin{document}
 
 \title{Semantics from the Questionnaire Up}
@@ -19,25 +22,32 @@
 
 \noindent{\bf Abstract}
 
-\textit{Abstract text goes here, justified and in italics.  The abstract would normally be one paragraph long.  See Table 1. for appropriate abstract length by submission type.}
+\textit{This abstract should eventually be between 125-150 words long and the paper itself must be between 5 and 10 pages long.}
 
 \section*{Background}
 Here we will talk about the background of data collection via questionnaires which exported CSV and were then loaded into a relational database through some ETL process.  Need to cite examples from various papers, shouldn't be too hard to find.
+\todo{Joseph to write}
 
 Now we talk about the challanges around this approach, especially hitting on the inflexibility of schema changes and difficulty of sharing and comparing data from this process. Again citations related to challenges people have faced shouldn't be too difficult to find.
 
 \section*{Another Way Forward}
 Outline the basic premise of representing the answers to questions with RDF directly.
+\textcolor{red}{What level of familiarity with the semanitic web should we assume?}
 
 \section*{How to Represent Questions}
+Mathias should write this section about the \emph{proper} method of representing the answer to a question in RDF. We can use a few examples here from CAFE or DIDEO.
 
 \section*{Advantages Over Previous Methods}
+Expand upon the problems with previous methods and extol the virtues of our method.
 
 \section*{Problems and Limitations}
+Does this merit an entire section, or just a few sentences in the conclusion.
 
 \section*{Our Implementations}
+Lots of screenshots and example of use from CAFE and DIDEO.
 
 \section*{Conclusion}
+The way \emph{you've} been doing things is wrong, our way is right.
 
 \makeatletter
 \renewcommand{\@biblabel}[1]{\hfill #1.}
@@ -52,9 +62,6 @@ Pryor TA, Gardner RM, Clayton RD, Warner HR. The HELP system. J Med Sys. 1983;7:
 \bibitem{ref2}
 Gardner RM, Golubjatnikov OK, Laub RM, Jacobson JT, Evans RS. Computer-critiqued blood ordering using the HELP system. Comput Biomed Res 1990;23:514-28.
 
-
-
 \end{thebibliography}
 
 \end{document}
-

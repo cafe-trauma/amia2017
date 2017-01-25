@@ -3,6 +3,8 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage[superscript,nomove]{cite}
 \usepackage{color}
+\usepackage{wrapfig}
+\usepackage{lipsum}
 
 
 \begin{document}
@@ -40,7 +42,20 @@ More text of an additional paragraph, with a figure reference (Figure ~\ref{fig1
 
 This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.
 
-This paragraph contains a reference to a table just below (Table 1).  All tables need to be placed as close to the corresponding text as possible, But each individual table should be on one page and not extend to multiple pages unless labeled as ``ÄúContinued"Äù.
+\pagebreak
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{pics/163.png}
+  \end{center}
+  \caption{Example of RDF graph preview.}
+\end{wrapfigure}
+
+\lipsum[1]
+
+This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.  This is additional text added just to show the one-column formatting.
+
+This paragraph contains a reference to a table just below (Table 1).  All tables need to be placed as close to the corresponding text as possible, But each individual table should be on one page and not extend to multiple pages unless labeled as ``??Continued"??.
 
 \begin{table}[h]
 \centering

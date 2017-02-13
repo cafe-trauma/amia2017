@@ -25,10 +25,26 @@
 \textit{This abstract should eventually be between 125-150 words long and the paper itself must be between 5 and 10 pages long.}
 
 \section*{Background}
-Here we will talk about the background of data collection via questionnaires which exported CSV and were then loaded into a relational database through some ETL process.  Need to cite examples from various papers, shouldn't be too hard to find.
-\todo{Joseph to write}
+Often at the core of clinical research is a questionnaire, in which a subject or researcher will enter data.
+The questions on this questionnaire will attempt to ascertain whatever information would be useful in the current research.
+There is much writing and research into how to properly word questions and design questionnaires so that the research can more accurately capture the information they desire.
+However, there is less to be said about how to represent the answers to said questions.
+A commonly used method is to simply record the exact answers to the question.
+For example on a questionnaire related to smoking, if the question was worded "How many cigarettes a day do you smoke?", and the subject answered twelve the number '12' would be recorded in whatever form was being used to track answers.
+This shouldn't cause a problem for the original researcher as they know that the answer '12' is to the question related to number of cigarettes smoked.
+A problem arises when this information needs to be compared to another source of data, either a later wording of the question or a separate study.
 
-Now we talk about the challenges around this approach, especially hitting on the inflexibility of schema changes and difficulty of sharing and comparing data from this process. Again citations related to challenges people have faced shouldn't be too difficult to find.
+
+Imagine a second study where they were only interested in studying "heavy smokers".
+The questionnaire in this study asked a question to find heavy smokers "Is the subject a heavy smoker?", and this would have been represented with Yes/No or True/False.
+Now later when comparing the data from these two studies in an attempt to make a larger research cohort you come to the problem of how to compare the answer of 'Yes' to the number '12'.
+There is the obvious problem of what the definition of a "heavy smoker" in the second question is, but assuming that this is a well known number say greater than 10 cigarettes a day, it will still require human intervention to map the data in to form or the other.
+You cannot accurately map the "Yes" of heavy smoker into a specific number of cigarettes a day.
+This means the data can only be mapped to the less specific form of heavy smoker yes/no.
+In the new dataset we would lose the information of exactly how many cigarettes the subject smoked per day.
+This does not even address the issue of what happens if the definition of "heavy smoker" changes over time, when comparing two studies using the same question.
+
+We propose a different way of recording the answers to the questions, which more accurately represents what the question is asking.
 
 \section*{Another Way Forward}
 Outline the basic premise of representing the answers to questions with RDF directly.

@@ -67,19 +67,32 @@ It is important to note that the RDF representations are not set in stone and co
 
 Also we have found that the step of codifying in RDF what a question is asking can also help correctly word questions by really thinking about what the question is asking.
 
-\textcolor{red}{Also mention ability to share "original data" for the purpose of reproducability and better transparency in science}
+\textcolor{red}{Also mention ability to share "original data" for the purpose of reproducibility and better transparency in science}
 
 \section*{Problems and Limitations}
 Does this merit an entire section, or just a few sentences in the conclusion.
 
-Poor suitability of RDF for likert scales and things that don't resolve to yes/no?
+Poor suitability of RDF for Likert scales and things that don't resolve to yes/no?
 
 \section*{Our Implementations}
-The application of this process is the focus of the CAFE project.  To those means we have built a few tools for this purpose.  The main tool is the CAFE questionnaire, which is a web questionnaire to be filled out by trauma center administrators.  The tool records all answers directly into RDF and will eventually allow users to perform comparisons to other organizations through semantically enriched queries, while also building a semantic representation of their organization for public health researchers.
+The application of this process is the focus of the CAFE project.
+To those means we have built a few tools for this purpose.
+The main tool is the CAFE questionnaire, which is a web questionnaire to be filled out by trauma center administrators.
+The tool records all answers directly into RDF and will eventually allow users to perform comparisons to other organizations through semantically enriched queries, while also building a semantic representation of their organization for public health researchers.
 
-The CAFE web application is a custom built site made with Angular2 and Django the source of which is avaliable on Github (https://github.com/cafe-trauma/).  The questionnaire currently consists of just over 150 questions with various types of possible answers.  Currently supported are yes/no, number field, checkbox selection, and drop downs.  These questions have been entered into an administrative portion of the tool by a non-developer (figure out admin question interface)  The answers to these questions have RDF representations which we have created in the tool (figure of rdf entry page), this can range from a single RDF triple (figure of question 161) to a complex set of triples (figure of large rdf graph).  When a user answers a question in the positive, either yes on a yes/no or any selction on the other question types, the configured RDF for that question will be inserted into a triplestore on the server.  This RDF can also be generated later at anytime as the tool also records all answers to the questionnaire in the same relational database which holds the questions and potential triples.  From the users point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
+The CAFE web application is a custom built site made with Angular2 and Django the source of which is available on Github (https://github.com/cafe-trauma/).
+The questionnaire currently consists of just over 150 questions with various types of possible answers.
+Currently supported are yes/no, number field, checkbox selection, and drop downs.
+These questions have been entered into an administrative portion of the tool by a non-developer (figure out admin question interface)  The answers to these questions have RDF representations which we have created in the tool (figure of rdf entry page), this can range from a single RDF triple (figure of question 161) to a complex set of triples (figure of large rdf graph).
+When a user answers a question in the positive, either yes on a yes/no or any selection on the other question types, the configured RDF for that question will be inserted into a triplestore on the server.
+This RDF can also be generated later at anytime as the tool also records all answers to the questionnaire in the same relational database which holds the questions and potential triples.
+From the users point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
 
-Another application we have built using this framework is the DIDEO(?) - evidence of potential drug-drug interaction classification tool.  In this tool trained users will enter properties from reported potential drug-drug interactions through a small number of questions.  These questions will generate RDF in the same way as the CAFE application.  After the questions are answered a logical reasoner is run over the generated RDF which can infer additional properties thus minimizing the number of questions the user will need to fill out.  In this example we are asking the user to answer 10 questions which using this inference can record the same amount of information that it would normally take many more questions to specify.
+Another application we have built using this framework is the DIDEO(?) - evidence of potential drug-drug interaction classification tool.
+In this tool trained users will enter properties from reported potential drug-drug interactions through a small number of questions.
+These questions will generate RDF in the same way as the CAFE application.
+After the questions are answered a logical reasoner is run over the generated RDF which can infer additional properties thus minimizing the number of questions the user will need to fill out.
+In this example we are asking the user to answer 10 questions which using this inference can record the same amount of information that it would normally take many more questions to specify.
 
 In both of these example applications the user is presented with a familiar looking survey presentation, but their answers will produce a semantically rich representation of what the questions are asking.  The generated data is immediately ready to be used with any existing RDF data or even translated back into a relational database format with all of the logical inferences intact.
 

@@ -5,6 +5,9 @@
 \usepackage{color}
 \usepackage{wrapfig}
 
+\usepackage[draft]{todonotes}
+%\usepackage[disable]{todonotes}
+
 \begin{document}
 
 \title{Semantics from the Questionnaire Up - Representing answers to questionnaires as RDF }
@@ -43,48 +46,48 @@ This does not even address the issue of what happens if the definition of "heavy
 
 We propose a different way of recording the answers to the questions, which more accurately represents what the question is asking.
 
-\section*{Methods}
-\textcolor{blue}{Explain the basics of the semantic web, hopefully inside of a single paragraph. - Mathias}
+\section*{Another Way Forward}
+Outline the basic premise of representing the answers to questions with RDF directly.
 
 \textcolor{red}{What level of familiarity with the semantic web should we assume?}
 \textcolor{red}{JB: The AMIA 2016 proceedings are over 2000 pages long, and have only four papers that mention "semantic web." So it's not all that common. But a paragraph should be enough.}
 
-\textcolor{blue}{Outline the basic premise of representing the answers to questions with RDF directly. - Mathias}
+Explain the basics of the semantic web, hopefully inside of a single paragraph.
+\textcolor{red}{Maybe this paragraph should go before we recommend using the semantic web to represent questions and answers.}
 
-\textcolor{blue}{Paragraph explaining how the CAFE application works broadly - Joseph}
+\section*{How to Represent Questions}
+Mathias should write this section about the \emph{proper} method of representing the answer to a question in RDF. We can use a few examples here from CAFE or DIDEO.
 
-The application of this process is a focus of the CAFE project.
-To those means we have built tools for this purpose.
+\section*{Advantages Over Previous Methods}
+The more traditional way of recording data through a questionnaire or survey involves some work after the data has been collected to translate the results of the data to fit into whatever larger datastore contains the information the collected data is being compared.  What we are proposing is roughly the same as that translation step except from a semantic web point of view.
+
+This has a few advantages, especially when done while still constructing the questions.  If the RDF representation of the answers are in place data will immediately be in its final state after the user answers a question and can either be used by the researcher right away or even used in the questionnaire application to provide feedback to the user.
+
+It is important to note that the RDF representations are not set in stone and could be modified at any time, even after generated triples have been inserted into another store.  One of the benefits of many triplestores and other types of graph databases is that each piece of information has an original context which enables a way to remove or update records from any source.
+
+Also we have found that the step of codifying in RDF what a question is asking can also help correctly word questions by really thinking about what the question is asking.
+
+\textcolor{red}{Also mention ability to share "original data" for the purpose of reproducibility and better transparency in science}
+
+\section*{Problems and Limitations}
+Does this merit an entire section, or just a few sentences in the conclusion.
+
+Poor suitability of RDF for Likert scales and things that don't resolve to yes/no?
+
+\section*{Our Implementations}
+The application of this process is the focus of the CAFE project.
+To those means we have built a few tools for this purpose.
 The main tool is the CAFE questionnaire, which is a web questionnaire to be filled out by trauma center administrators.
-The tool records all answers directly into RDF, and will eventually allow users to perform comparisons to other organizations through semantically enriched queries.
-It will also build a semantic representation of their organization which will be made available to public health researchers.
+The tool records all answers directly into RDF and will eventually allow users to perform comparisons to other organizations through semantically enriched queries, while also building a semantic representation of their organization for public health researchers.
 
-\textcolor{blue}{Technical detail on the CAFE applications workings - Joseph}
-
-The CAFE web application is a custom made site, built using Angular2 and Django, the source of which is available on Github (https://github.com/cafe-trauma/).
+The CAFE web application is a custom built site made with Angular2 and Django the source of which is available on Github (https://github.com/cafe-trauma/).
 The questionnaire currently consists of just over 150 questions with various types of possible answers.
-New questions are added to the site through an administrator interface by non-developers (figure of question admin interface).
-Currently supported are yes/no, number field, check-box selection, and drop downs.
-The answers to these questions have RDF representations also entered into the site through the administrator interface by a non-developer. (figure of rdf entry page)
-These can range from a single RDF triple (figure of question 161) to a complex set of triples (figure of large rdf graph).
+Currently supported are yes/no, number field, checkbox selection, and drop downs.
+These questions have been entered into an administrative portion of the tool by a non-developer (figure out admin question interface)  The answers to these questions have RDF representations which we have created in the tool (figure of rdf entry page), this can range from a single RDF triple (figure of question 161) to a complex set of triples (figure of large rdf graph).
 When a user answers a question in the positive, either yes on a yes/no or any selection on the other question types, the configured RDF for that question will be inserted into a triplestore on the server.
 This RDF can also be generated later at anytime as the tool also records all answers to the questionnaire in the same relational database which holds the questions and potential triples.
 From the users point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
 
-
-\textcolor{red}{Also mention ability to share "original data" for the purpose of reproducibility and better transparency in science}
-
-\section*{Results}
-\textcolor{blue}{What do we actually want to say in the results section?}
-
-\textcolor{red}{Maybe mention semantic survey here, or would that be better for future work?}
-
-\section*{Discussion}
-What we have set forth here is methodology for representing the answers to questionnaires directly into RDF.
-
-\textcolor{red}{Advantages of semantic web, sharability/usability of generated data, question framing}
-
-\section*{Future Work}
 Another application we have built using this framework is the DIDEO(?) - evidence of potential drug-drug interaction classification tool.
 In this tool trained users will enter properties from reported potential drug-drug interactions through a small number of questions.
 These questions will generate RDF in the same way as the CAFE application.
@@ -93,6 +96,12 @@ In this example we are asking the user to answer 10 questions which using this i
 
 In both of these example applications the user is presented with a familiar looking survey presentation, but their answers will produce a semantically rich representation of what the questions are asking.  The generated data is immediately ready to be used with any existing RDF data or even translated back into a relational database format with all of the logical inferences intact.
 
+\textcolor{red}{Maybe mention semantic survey here, or would that be better for future work?}
+
+\section*{Conclusion}
+What we have set forth here is methodology for representing the answers to questionnaires directly into RDF.
+
+\textcolor{red}{Advantages of semantic web, sharability/usability of generated data, question framing}
 
 \makeatletter
 \renewcommand{\@biblabel}[1]{\hfill #1.}

@@ -53,13 +53,19 @@ We propose a different way of recording the answers to the questions, which more
 
 \textcolor{blue}{Paragraph explaining how the CAFE application works broadly - Joseph}
 
+\begin{wrapfigure}{r}{0.7\textwidth}
+  \begin{center}
+    \includegraphics[width=0.68\textwidth]{pics/cafe_figure.png}
+  \end{center}
+  \caption{CAFE Project Process.}
+  \label{cafe_figure}
+\end{wrapfigure}
+
 The application of this process is a focus of the CAFE project.
 To those means we have built tools for this purpose.
 The main tool is the CAFE questionnaire, which is a web questionnaire to be filled out by trauma center administrators.
 The tool records all answers directly into RDF, and will eventually allow users to perform comparisons to other organizations through semantically enriched queries.
 It will also build a semantic representation of their organization which will be made available to public health researchers.
-
-\textcolor{blue}{Technical detail on the CAFE applications workings - Joseph}
 
 \begin{figure}[h!]
   \centering
@@ -67,6 +73,8 @@ It will also build a semantic representation of their organization which will be
   \caption{Components of the CAFE Application.}
   \label{cafe_process}
 \end{figure}
+
+\textcolor{blue}{Technical detail on the CAFE applications workings - Joseph}
 
 The CAFE web application is a custom made site, built using Angular2 and Django, the source of which is available on Github (https://github.com/cafe-trauma/).
 The questionnaire currently consists of just over 150 questions with various types of possible answers.

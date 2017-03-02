@@ -9,7 +9,7 @@
 
 \title{Semantics from the Questionnaire Up - Representing answers to questionnaires as RDF }
 
-\author{Joseph R. Utecht, B.A.$^{1}$,Mathias Brochhausen, Ph.D.$^{1}$, Firstname B. Lastname, Degrees$^{2}$}
+\author{Joseph R. Utecht, BA$^{1}$,Mathias Brochhausen, PhD$^{1}$, Firstname B. Lastname, Degrees$^{2}$}
 
 \institutes{
     $^1$University of Arkansas for Medical Science, Little Rock, AR, USA; $^2$Institution, City, State, Country (if applicable)\\
@@ -43,8 +43,14 @@ This does not even address the issue of what happens if the definition of "heavy
 
 We propose a different way of recording the answers to the questions, which more accurately represents what the question is asking.
 
+\textcolor{blue}{The introduction already needs to introduce CAFE and the problem it addresses - Mathias will write that.}
+
 \section*{Methods}
 \textcolor{blue}{Explain the basics of the semantic web, hopefully inside of a single paragraph. - Mathias}
+
+One of the key problems the CAFE project aimed to address is the variability of organizational components of trauma systems and trauma centers, how they are defined, and how they are interconnected with each other. One example for that is reporting. Whom the trauma medical director reports to and whether the trauma program manager reports to the trauma medical director, provided that these two roles exist in an organization, can be completely different from one organization to the other. Representing complex relations and how the existence of those relations can influence the definition of organizational roles, thus was one of the main concerns of the project. An adequate way to represent complex data with multiple relations and definition based on those definition Semantic Web Technologies seemed to us to be the most appropriate technologies. The Resource Description Framework (RDF), the basic standard of the Semantic Web allows the representation of entities and multiple relations this entities have to other entities. For our purpose we also plan to use an ontology coded in the Web Ontology Language (OWL2). Ontologies are formal representation of the entities and the relations in a domain of discourse. They enable providing axiomatic definitions of types of entities, e.g. trauma system, trauma medical director, and lead agency. Our strategy is to store the information acquired through the questionnaires as RDF data. Hence, we also need a query language to allow us to run queries over our RDF data. The standard query language for this purpose is SPARQL.
+
+\textcolor{blue}{Maybe this goes after the description of the general outline of the project. Also, we will need citations for all of the standards mentioned}
 
 \textcolor{red}{What level of familiarity with the semantic web should we assume?}
 \textcolor{red}{JB: The AMIA 2016 proceedings are over 2000 pages long, and have only four papers that mention "semantic web." So it's not all that common. But a paragraph should be enough.}
@@ -53,7 +59,9 @@ We propose a different way of recording the answers to the questions, which more
 
 \textcolor{blue}{Paragraph explaining how the CAFE application works broadly - Joseph}
 
-\begin{wrapfigure}{r}{0.7\textwidth}
+\pagebreak
+
+\begin{wrapfigure}[17]{r}{0.7\textwidth}
   \begin{center}
     \includegraphics[width=0.68\textwidth]{pics/cafe_figure.png}
   \end{center}
@@ -67,6 +75,8 @@ The main tool is the CAFE questionnaire, which is a web questionnaire to be fill
 The tool records all answers directly into RDF, and will eventually allow users to perform comparisons to other organizations through semantically enriched queries.
 It will also build a semantic representation of their organization which will be made available to public health researchers.
 
+\pagebreak
+
 \begin{figure}[h!]
   \centering
   \includegraphics[width=1\textwidth]{pics/cafe_process.png}
@@ -76,16 +86,44 @@ It will also build a semantic representation of their organization which will be
 
 \textcolor{blue}{Technical detail on the CAFE applications workings - Joseph}
 
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{pics/161_question_admin.png}
+  \end{center}
+  \caption{Creating a Question in the Administrator Interface.}
+  \label{161_question_admin}
+  \vspace{5mm}  
+   \begin{center}
+    \includegraphics[width=0.48\textwidth]{pics/161_statement_admin.png}
+  \end{center}
+  \caption{Adding RDF Statements to a Question in the Administrator Interface.}
+  \label{161_statement_admin}
+\end{wrapfigure}
+
 The CAFE web application is a custom made site, built using Angular2 and Django, the source of which is available on Github (https://github.com/cafe-trauma/).
 The questionnaire currently consists of just over 150 questions with various types of possible answers.
-New questions are added to the site through an administrator interface by non-developers (figure of question admin interface).
+New questions are added to the site through an administrator interface by non-developers (Figure ~\ref{161_question_admin}).
 Currently supported are yes/no, number field, check-box selection, and drop downs.
-The answers to these questions have RDF representations also entered into the site through the administrator interface by a non-developer. (figure of rdf entry page)
-These can range from a single RDF triple (figure of question 161) to a complex set of triples (figure of large rdf graph).
+The answers to these questions have RDF representations also entered into the site through the administrator interface by a non-developer. (Figure ~\ref{161_statement_admin})
+These can range from a single RDF triple (Figure ~\ref{simple_rdf}) to a complex set of triples (Figure ~\ref{complex_rdf}).
 When a user answers a question in the positive, either yes on a yes/no or any selection on the other question types, the configured RDF for that question will be inserted into a triplestore on the server.
 This RDF can also be generated later at anytime as the tool also records all answers to the questionnaire in the same relational database which holds the questions and potential triples.
 From the users point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
 
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{pics/161.png}
+    \caption{Single RDF Triple.}
+    \label{simple_rdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.67\textwidth}
+    \includegraphics[width=\textwidth]{pics/12.png}
+    \caption{More complex RDF example.}
+    \label{complex_rdf}
+  \end{minipage}
+\end{figure}
 
 \textcolor{red}{Also mention ability to share "original data" for the purpose of reproducibility and better transparency in science}
 

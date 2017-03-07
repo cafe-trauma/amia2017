@@ -39,6 +39,19 @@ The Web Ontology Language (OWL2) allows computer-parsable and semantically-rich 
 
 An adequate way to represent complex data with multiple relations and definition based on those definition Semantic Web Technologies seemed to us to be the most appropriate technologies. The Resource Description Framework (RDF), the basic standard of the Semantic Web allows the representation of entities and multiple relations this entities have to other entities. For our purpose we also plan to use an ontology coded in the Web Ontology Language (OWL2). Ontologies are formal representation of the entities and the relations in a domain of discourse. They enable providing axiomatic definitions of types of entities, e.g. trauma system, trauma medical director, and lead agency. Our strategy is to store the information acquired through the questionnaires as RDF data. Hence, we also need a query language to allow us to run queries over our RDF data. The standard query language for this purpose is SPARQL.
 
+\begin{wrapfigure}{r}{0.7\textwidth}
+  \begin{center}
+    \includegraphics[width=0.68\textwidth]{pics/cafe_figure.png}
+  \end{center}
+  \caption{CAFE Project Process.}
+  \label{cafe_figure}
+\end{wrapfigure}
+
+\textcolor{blue}{Maybe this goes after the description of the general outline of the project. Also, we will need citations for all of the standards mentioned}
+
+\textcolor{red}{What level of familiarity with the semantic web should we assume?}
+\textcolor{red}{JB: The AMIA 2016 proceedings are over 2000 pages long, and have only four papers that mention "semantic web." So it's not all that common. But a paragraph should be enough.}
+
 The application of this process is a focus of the CAFE project (Figure ~\ref{cafe_figure}).
 To those means we have built tools for this purpose.
 The main tool is the CAFE questionnaire, which is a web questionnaire to be filled out by trauma center administrators.
@@ -51,6 +64,27 @@ It will also build a semantic representation of their organization which will be
   \caption{Components of the CAFE Application.}
   \label{cafe_process}
 \end{figure}
+
+\pagebreak
+
+\section*{Results}
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{pics/161_question_admin.png}
+  \end{center}
+  \caption{Creating a Question in the Administrator Interface.}
+  \label{161_question_admin}
+  \vspace{5mm}  
+   \begin{center}
+    \includegraphics[width=0.48\textwidth]{pics/161_statement_admin.png}
+  \end{center}
+  \caption{Adding RDF Statements to a Question in the Administrator Interface.}
+  \label{161_statement_admin}
+\end{wrapfigure}
+
+\textcolor{blue}{What do we actually want to say in the results section?}
+
+\textcolor{red}{Maybe mention semantic survey here, or would that be better for future work?}
 
 The CAFE web application is a custom made site, built using Angular2 and Django, the source of which is available on Github (https://github.com/cafe-trauma/).
 The questionnaire currently consists of just over 150 questions with various types of possible answers.
@@ -67,6 +101,23 @@ These triples will be inserted with a context tying them to this user and questi
 This RDF can also be generated later at anytime as the tool also records all answers to the questionnaire in the same relational database which holds the questions and potential triples.
 From the users point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
 
+\begin{figure}[b]
+  \centering
+  \begin{minipage}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{pics/161.png}
+    \caption{Single RDF Triple.}
+    \label{simple_rdf}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.67\textwidth}
+    \includegraphics[width=\textwidth]{pics/12.png}
+    \caption{More complex RDF example.}
+    \label{complex_rdf}
+  \end{minipage}
+\end{figure}
+
+\textcolor{red}{Also mention ability to share "original data" for the purpose of reproducibility and better transparency in science}
+
 \section*{Discussion}
 What we have set forth here is methodology for representing the answers to questionnaires directly into RDF.
 
@@ -80,6 +131,28 @@ After the questions are answered a logical reasoner is run over the generated RD
 In this example we are asking the user to answer 10 questions which using this inference can record the same amount of information that it would normally take many more questions to specify.
 
 In both of these example applications the user is presented with a familiar looking survey presentation, but their answers will produce a semantically rich representation of what the questions are asking.  The generated data is immediately ready to be used with any existing RDF data or even translated back into a relational database format with all of the logical inferences intact.
+
+\section*{Parking Lot}
+Questionnaires are frequently at the core of biomedical research, such as clinical trials. In these a subject or researcher will enter data.
+The questions on this questionnaire will attempt to ascertain whatever information would be useful in the current research.
+There is much writing and research into how to properly word questions and design questionnaires so that the research can more accurately capture the information they desire.
+However, there is less to be said about how to represent the answers to said questions.
+A commonly used method is to simply record the exact answers to the question.
+For example on a questionnaire related to smoking, if the question was worded "How many cigarettes a day do you smoke?", and the subject answered twelve the number '12' would be recorded in whatever form was being used to track answers.
+This shouldn't cause a problem for the original researcher as they know that the answer '12' is to the question related to number of cigarettes smoked.
+A problem arises when this information needs to be compared to another source of data, either a later wording of the question or a separate study.
+
+
+Imagine a second study where they were only interested in studying "heavy smokers".
+The questionnaire in this study asked a question to find heavy smokers "Is the subject a heavy smoker?", and this would have been represented with Yes/No or True/False.
+Now later when comparing the data from these two studies in an attempt to make a larger research cohort you come to the problem of how to compare the answer of 'Yes' to the number '12'.
+There is the obvious problem of what the definition of a "heavy smoker" in the second question is, but assuming that this is a well known number say greater than 10 cigarettes a day, it will still require human intervention to map the data in to form or the other.
+You cannot accurately map the "Yes" of heavy smoker into a specific number of cigarettes a day.
+This means the data can only be mapped to the less specific form of heavy smoker yes/no.
+In the new dataset we would lose the information of exactly how many cigarettes the subject smoked per day.
+This does not even address the issue of what happens if the definition of "heavy smoker" changes over time, when comparing two studies using the same question.
+
+We propose a different way of recording the answers to the questions, which more accurately represents what the question is asking.
 
 \makeatletter
 \renewcommand{\@biblabel}[1]{\hfill #1.}

@@ -4,6 +4,8 @@
 \usepackage[superscript,nomove]{cite}
 \usepackage{color}
 \usepackage{wrapfig}
+\usepackage[normalem]{ulem}
+
 
 \begin{document}
 
@@ -20,28 +22,26 @@
 \section*{Background}
 
 The CAFE (Comparative Assessment Framework for Environments of Trauma Care) project (1R01GM111324) aims to address the problem of lack of comparable data about trauma care organizations (trauma systems, trauma centers) and their components.
-To achieve this we created a semantically-rich vocabulary in form of an OWL ontology called OOSTT \cite{ref1}.
+To achieve this we created a semantically-rich vocabulary in the form of an Web Ontology Language (OWL)\cite{TODO} ontology: the Ontology of Organizational Structures of Trauma centers and Trauma systems (OOSTT) \cite{ref1}.
 OOSTT will be used as the semantic backbone of a web-based IT infrastructure that allows representatives of trauma system or trauma centers to enter data about their institution and compare it in real-time to other institutions of the same type.
-In order to facilitate  managing the entered data, we needed the data provided by the users in a format that allows easy integration with the OWL file.
-Therefore, we decide to create data in the Resource Description Framework (RDF).
-Our goal is to provide a user-friendly questionnaire that creates RDF as the users answer questions.
-In this poster we describe the methodologies used to build the CAFE questionnaire and the strategies of how RDF data are created.
+To facilitate management and use of user-provided data and its integration with the ontology, the system is designed to automatically generate data represented using the Resource Description Framework (RDF)\cite{TODO} in a way that is invisible to users.
+%Our goal is to provide a user-friendly questionnaire that creates RDF as the users answer questions.
+This poster describes the methodologies used to build the CAFE questionnaire system and the strategies it uses to automate generation of RDF data.
 
 \section*{Methods}
-
-
-The Resource Description Framework (RDF), the basic standard of the Semantic Web, allows the representation of entities and their potential relationships to many other entities
-RDF data can be stored in triplestores alongside with OWL files.
-The latter provide computer-interpretable definitions of the entities in  a domain, in this case of the trauma care domain, e.g trauma center, trauma program manager, etc.
-The requirement of user-friendly data entry restricted the complexity of the interface used for data-entry, thus we decided on a traditional questionnaire similar to, for instance, Lime Survey. 
-The application we have built uses a decoupled web interface built using the Javascript library Angular2.
+RDF is the the basic standard of the Semantic Web. It allows the linked representation of entities relations among them as a set of triples -- statements in subject/predicate/object form. RDF data can be stored in a triplestore databases along with OWL ontologies that further describe the data. The latter provide computer-interpretable definitions of the entities in  a domain, in this case of the trauma care domain, e.g semantic definitions of 'trauma center', 'trauma program manager', etc. 
+%TODO? JB Automated inference on OWL and RDF statements in a triple store can be used to extract implicit knowledge...
+To support our requirement of allowing user-friendly data entry we developed a traditional questionnaire interface similar to, for instance, Lime Survey\cite{TODO}. 
+Our application uses a decoupled web interface built using the Javascript library Angular2\cite{TODO}.
 As soon as a user answers a question the answer is recorded by the server, without the user needing to press a save or submit button, and the decoupled nature means that user interaction is not interrupted if the server is busy processing previous answers.
-The innovation is that our survey does not only store the answer in a relational database. 
-It also creates an RDF statement representing the portion of reality the answer reports.
-For example, if the question is "Does your trauma center have a trauma registrar?" RDF statements are created that represent the individual trauma registrar role, its bearer, and the individual trauma center in question, specifying that the trauma registrar is an organizational member of that trauma center.
-Our tool allows asking questions with boolean values, multi-selection items , drop down menus and entering date or measurement data.
+The main innovation is that, in addition to storing answers in a relational database, our survey system also generates RDF statements representing the portion of reality that the answer reports.
+For example, if the question "Does your trauma center have a trauma registrar?" is answered affirmatively, RDF statements are created to represent the individual trauma registrar role, the bearer of that role (the individual trauma registrar), the individual trauma center in question, and the connections between those entities: the trauma registrar is an organizational member of that trauma center.
+Our tool allows asking questions with boolean values, multi-selection items, drop down menus and entering date or measurement data.
 
 \section*{Results}
+\color{red}
+COMMENT, JB: In general this section, and the previous to some extent, should better tease apart discussion of the administrative interface vs the questionnaire interface for end users. There's no room for another diagram, but it might be nice to spell out the end-to-end workflow for use of the system at some early point in the abstract (1. person with some knowledge of the domain or with access to domain experts builds a questionnaire, which involves adding question text and building RDF templates that will be used to generate statements for answered questions; 2. end users fill out the questionnaire, which populates the relational database with answers and the triple store with RDF generated from the answers and templates; 3. ?)
+\color{black}
 
 \begin{wrapfigure}{r}{0.5\textwidth}
   \begin{center}
@@ -51,14 +51,16 @@ Our tool allows asking questions with boolean values, multi-selection items , dr
   \label{cafe_process}
 \end{wrapfigure}
 
-The result of this work is the CAFE web application; the source of which is available on Github (https://github.com/cafe-trauma/). 
-This site allows us to perform the mapping from question to RDF while constructing the questions for the questionnaire.
-The RDF representations of questions are created one triple at a time by a non-developer through an administrative interface, and can range from a single RDF statement to a complex set of triples.
-The wording, logic, and RDF mapping of questions are stored in a relational database and accessed by the front-end through a series of REST endpoints on the server.
-When a user answers a question the server-side component will record the answer in the relational database and also insert the configured RDF for that question into the triplestore (Figure ~\ref{cafe_process}).
-From the users point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
-The benefit of this method is that our semantically enriched view of a users organization is available immediately to both build visualizations for the user and to share with public health researchers.
+The result of this work is the CAFE web application, the source of which is available on Github (https://github.com/cafe-trauma/). 
+This application's administrative interface supports creating mappings from questions to RDF templates while constructing the questions for the questionnaire. The RDF representations of questions can range from a single RDF statement to a complex set of triples.
+%TODO JB example would be nice, but space?
 
+\sout {The wording, logic, and RDF mapping of questions are stored in a relational database and accessed by the front-end through a series of REST endpoints on the server.} \color{red}JB: consider scratching?\color{black}
+
+When a user answers a question the server-side component will record the answer in the relational database and also insert the configured RDF for that question into the triplestore (Figure ~\ref{cafe_process}).
+From the user's point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
+The benefit of this method is that our semantically enriched view of a users organization is available immediately to both build visualizations for the user and to share with public health researchers.
+\color{red}COMMENT, JB: need to say something about what this will be useful for\color{black}
 \makeatletter
 \renewcommand{\@biblabel}[1]{\hfill #1.}
 \makeatother

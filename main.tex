@@ -36,7 +36,6 @@ Our application uses a decoupled web interface built using the Javascript librar
 As soon as a user answers a question the answer is recorded by the server, without the user needing to press a save or submit button, and the decoupled nature means that user interaction is not interrupted if the server is busy processing previous answers.
 The main innovation is that, in addition to storing answers in a relational database, our survey system also generates RDF statements representing the portion of reality that the answer reports.
 
-Our tool allows asking questions with boolean values, multi-selection items, drop down menus and entering date or measurement data.
 
 \section*{Results}
 %COMMENT, JB: In general this section, and the previous to some extent, should better tease apart discussion of the administrative interface vs the questionnaire interface for end users. There's no room for another diagram, but it might be nice to spell out the end-to-end workflow for use of the system at some early point in the abstract (1. person with some knowledge of the domain or with access to domain experts builds a questionnaire, which involves adding question text and building RDF templates that will be used to generate statements for answered questions; 2. end users fill out the questionnaire, which populates the relational database with answers and the triple store with RDF generated from the answers and templates; 3. ?)}
@@ -49,11 +48,15 @@ Our tool allows asking questions with boolean values, multi-selection items, dro
   \label{cafe_process}
 \end{wrapfigure}
 
-The result of this work is a tool that allows us to create questionnaires, which when they get filled in by the representatives of trauma systems or trauma centers create RDF representations based on the meaning of the answer. 
+The result of this work is is available on Github (https://github.com/cafe-trauma/). 
+a tool that allows us to create questionnaires, which when they get filled in by the representatives of trauma systems or trauma centers create RDF representations based on the meaning of the answer. 
 For example, if the question "Does your trauma center have a trauma registrar?" is answered affirmatively, RDF statements are created to represent the individual trauma registrar role, the bearer of that role (the individual trauma registrar), the individual trauma center in question, and the connections between those entities: the trauma registrar is an organizational member of that trauma center.
+To achieve that the questionnaire architect only needs to create the questions, pick the question type (boolean, multi-selection items, drop down menus and entering date or measurement data) .
+This application's administrative interface supports creating mappings from questions to RDF templates while constructing the questions for the questionnaire. 
+The RDF representations of questions can range from a single RDF statement to a complex set of triples.
+In addition to creating RDF triples the answers will  also be recorded in a relational data base.
 
-this work is the CAFE web application, the source of which is available on Github (https://github.com/cafe-trauma/). 
-This application's administrative interface supports creating mappings from questions to RDF templates while constructing the questions for the questionnaire. The RDF representations of questions can range from a single RDF statement to a complex set of triples.
+
 %TODO JB example would be nice, but space?
 When a user answers a question the server-side component will record the answer in the relational database and also insert the configured RDF for that question into the triplestore.
 From the user's point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.

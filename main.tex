@@ -39,9 +39,9 @@ For example, if the question "Does your trauma center have a trauma registrar?" 
 Our tool allows asking questions with boolean values, multi-selection items, drop down menus and entering date or measurement data.
 
 \section*{Results}
-\color{red}
-COMMENT, JB: In general this section, and the previous to some extent, should better tease apart discussion of the administrative interface vs the questionnaire interface for end users. There's no room for another diagram, but it might be nice to spell out the end-to-end workflow for use of the system at some early point in the abstract (1. person with some knowledge of the domain or with access to domain experts builds a questionnaire, which involves adding question text and building RDF templates that will be used to generate statements for answered questions; 2. end users fill out the questionnaire, which populates the relational database with answers and the triple store with RDF generated from the answers and templates; 3. ?)
-\color{black}
+\textcolor{red}{
+COMMENT, JB: In general this section, and the previous to some extent, should better tease apart discussion of the administrative interface vs the questionnaire interface for end users. There's no room for another diagram, but it might be nice to spell out the end-to-end workflow for use of the system at some early point in the abstract (1. person with some knowledge of the domain or with access to domain experts builds a questionnaire, which involves adding question text and building RDF templates that will be used to generate statements for answered questions; 2. end users fill out the questionnaire, which populates the relational database with answers and the triple store with RDF generated from the answers and templates; 3. ?)}
+\textcolor{green}{I do like that idea. I'll start workking on this}
 
 \begin{wrapfigure}{r}{0.5\textwidth}
   \begin{center}
@@ -55,23 +55,25 @@ The result of this work is the CAFE web application, the source of which is avai
 This application's administrative interface supports creating mappings from questions to RDF templates while constructing the questions for the questionnaire. The RDF representations of questions can range from a single RDF statement to a complex set of triples.
 %TODO JB example would be nice, but space?
 
-\sout {The wording, logic, and RDF mapping of questions are stored in a relational database and accessed by the front-end through a series of REST endpoints on the server.} \color{red}JB: consider scratching?\color{black}
+\sout {The wording, logic, and RDF mapping of questions are stored in a relational database and accessed by the front-end through a series of REST endpoints on the server.}
+\textcolor{red}{JB: consider scratching?}
 
 When a user answers a question the server-side component will record the answer in the relational database and also insert the configured RDF for that question into the triplestore (Figure ~\ref{cafe_process}).
 From the user's point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
 The benefit of this method is that our semantically enriched view of a users organization is available immediately to both build visualizations for the user and to share with public health researchers.
-\color{red}COMMENT, JB: need to say something about what this will be useful for\color{black}
+\textcolor{red}{COMMENT, JB: need to say something about what this will be useful for}
+
+
 \makeatletter
 \renewcommand{\@biblabel}[1]{\hfill #1.}
 \makeatother
-
 
 \bibliographystyle{unsrt}
 \begin{thebibliography}{1}
 \setlength\itemsep{-0.1em}
 
 \bibitem{ref1}
-Utecht J, Judkins J, Colvin T Jr., et al. OOSTT: a Resource for Analyzing the Organizational Structures of Trauma Centers and Trauma Systems. CEUR Workshop Proc. 2016 Aug;1747.
+Utecht J, Judkins J, Colvin T Jr., et al. OOSTT: a Resource for Analyzing the Organizational Structures of Trauma Centers and Trauma Systems. CEUR Workshop Proc. 2016 Aug;1747. \href{<http://google.com>}
 
 \end{thebibliography}
 

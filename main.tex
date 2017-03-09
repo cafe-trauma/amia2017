@@ -7,10 +7,11 @@
 \usepackage{hyperref}
 \usepackage[normalem]{ulem}
 
+\setlength{\voffset}{-.5in}
 
 \begin{document}
 
-\title{Creating RDF data on trauma care organizations from questionnaires}
+\title{Creating RDF Data on Trauma Care Organizations from Questionnaires}
 
 \author{Joseph R. Utecht, BA$^{1}$, Mathias Brochhausen, PhD$^{1}$}
 
@@ -22,49 +23,41 @@
 
 \section*{Background}
 
-Assessment of trauma systems and trauma centers positivley affects patient outcomes \cite{ref1, ref2}.
-However, assessment of these organizations often falls short because of a lack of comparability regarinding components and their implementation.
-The CAFE project\footnote{NIH-funded: 1R01GM111324}\footnote{http://cafe-trauma.com} aims to provide a web-based self-assessment for trauma systems and trauma centers. 
-To this end we develop a user-friendly questionnaire that allows users to enter data and compare organizational components in real time to typical trauma center or systems.
-This poster describes our methodology to create semantically-rich data based on user-friendly, web-based questionnaires, similar to, for instance, Lime Survey \footnote{https://www.limesurvey.org}. 
+Assessment of trauma systems and trauma centers positively affects patient outcomes \cite{ref1, ref2}.
+However, assessment of these organizations often falls short because of a lack of comparability regarding components and their implementation.
+The CAFE project(\href{https://cafe-trauma.com}{https://cafe-trauma.com}) aims to provide a web-based self-assessment environment for this domain. 
+To this end we develop a user-friendly questionnaire allowing users to enter data and compare organizational components in real time .
+This poster describes our methodology to create semantically-rich data based on user-friendly, web-based questionnaires.
+The main innovation is that, in addition to storing answers in a relational database, our survey system also generates RDF (\href{https://www.w3.org/RDF}{https://www.w3.org/RDF}) statements representing the portion of reality that the answer reports.
 
 \section*{Methods}
-RDF is the the basic standard of the Semantic Web. It allows the linked representation of entities relations among them as a set of triples -- statements in subject/predicate/object form. RDF data can be stored in a triplestore databases along with OWL ontologies that further describe the data. The latter provide computer-interpretable definitions of the entities in  a domain, in this case of the trauma care domain, e.g semantic definitions of 'trauma center', 'trauma program manager', etc. 
-%TODO? JB Automated inference on OWL and RDF statements in a triple store can be used to extract implicit knowledge...
-To support our requirement of allowing user-friendly data entry we developed a traditional questionnaire interface similar to, for instance, Lime Survey\cite{TODO}. 
-Our application uses a decoupled web interface built using the Javascript library Angular2\cite{TODO}.
-As soon as a user answers a question the answer is recorded by the server, without the user needing to press a save or submit button, and the decoupled nature means that user interaction is not interrupted if the server is busy processing previous answers.
-The main innovation is that, in addition to storing answers in a relational database, our survey system also generates RDF statements representing the portion of reality that the answer reports.
-
+To support our requirement of allowing user-friendly data entry we developed a tool to create traditional web questionnaires.
+To prevent any interruption for the user while the server processes previous answers we chose to build the interface as a separate web application in Angular2 (\href{https://angular.io}{https://angular.io}).
+To provide semantically-rich data the server-side component will not only record the answer in a relational database (RDB), but simultaneously create a pre-configured RDF representation of the answer in a triplestore.
 
 \section*{Results}
-%COMMENT, JB: In general this section, and the previous to some extent, should better tease apart discussion of the administrative interface vs the questionnaire interface for end users. There's no room for another diagram, but it might be nice to spell out the end-to-end workflow for use of the system at some early point in the abstract (1. person with some knowledge of the domain or with access to domain experts builds a questionnaire, which involves adding question text and building RDF templates that will be used to generate statements for answered questions; 2. end users fill out the questionnaire, which populates the relational database with answers and the triple store with RDF generated from the answers and templates; 3. ?)}
-% I do like that idea. I'll start working on this
 \begin{wrapfigure}{r}{0.3\textwidth}
   \begin{center}
-    \includegraphics[width=0.28\textwidth]{pics/cafe_process5.png}
+    \includegraphics[width=0.28\textwidth]{pics/cafe_process6.png}
   \end{center}
-  \caption{CAFE Questionnaire.}
+  \caption{CAFE Process.}
   \label{cafe_process}
 \end{wrapfigure}
 
-The result of this work is is available on Github (https://github.com/cafe-trauma/). 
-a tool that allows us to create questionnaires, which when they get filled in by the representatives of trauma systems or trauma centers create RDF representations based on the meaning of the answer. 
-For example, if the question "Does your trauma center have a trauma registrar?" is answered affirmatively, RDF statements are created to represent the individual trauma registrar role, the bearer of that role (the individual trauma registrar), the individual trauma center in question, and the connections between those entities: the trauma registrar is an organizational member of that trauma center.
-To achieve that the questionnaire architect only needs to create the questions, pick the question type (boolean, multi-selection items, drop down menus and entering date or measurement data) .
-This application's administrative interface supports creating mappings from questions to RDF templates while constructing the questions for the questionnaire. 
-The RDF representations of questions can range from a single RDF statement to a complex set of triples.
-In addition to creating RDF triples the answers will  also be recorded in a relational data base.
+The result of this work is available on Github (\href{https://github.com/cafe-trauma}{https://github.com/cafe-trauma}). Fig. 1 shows the steps of acquiring RDF data through a questionnaire built using our tool. 
+The first step is the creation of the questions and the definition of the RDF representation for the answers.
+The tool then builds a traditional web questionnaire.
+As respondents answer questions their answers are recorded in a RDB and the RDF representation will be created in a triplestore.
 
+For example, if the question ``Does your trauma center have a trauma registrar?" is answered affirmatively, RDF statements are created to represent the individual trauma registrar and the individual trauma center in question, and the fact that the trauma registrar is an organizational member of that trauma center.
+At the same time it records the simple answer ``yes" in the RDB.
 
-%TODO JB example would be nice, but space?
-When a user answers a question the server-side component will record the answer in the relational database and also insert the configured RDF for that question into the triplestore.
-From the user's point of view the questionnaire does not differ in any way from a more typical questionnaire backed by a relational database.
-The benefit of this method is that our semantically enriched view of a users organization is available immediately to both build visualizations for the user and to share with public health researchers.
-\textcolor{red}{COMMENT, JB: need to say something about what this will be useful for}
+From the user's point of view the questionnaire does not differ in any way from a typical web questionnaire.
+The benefit of this method is that the data about a respondent's organization is available in a format that allows integration with rich semantic resources. 
+In the CAFE project we use the OWL ontology OOSTT \cite{ref3} to integrate knowledge about trauma systems and trauma centers. 
 
-\section*{Conclusion}
-
+\section*{Acknowledgements}
+The research presented in this paper is funded by the National Institute of General Medical Sciences of the National Institutes of Health under award number \textbf{1R01GM111324}.
 
 \makeatletter
 \renewcommand{\@biblabel}[1]{\hfill #1.}
@@ -81,9 +74,7 @@ T.L.Sanddal,T.J.Esposito,J.R.Whitney,D.Hartford,P.P.Taillac, N. C. Mann NC, et a
 T. J. Esposito, T. L. Sanddal, S. A. Reynolds, N. D. Sanddal, "Effect of a voluntary trauma system on preventable death and inappropriate care in a rural state," J Trauma, 2003, 54(4), 663-670.
 
 \bibitem{ref3}
-Utecht J, Judkins J, Colvin T Jr., et al. OOSTT: a Resource for Analyzing the Organizational Structures of Trauma Centers and Trauma Systems. CEUR Workshop Proc. 2016 Aug;1747. \url{http://ceur-ws.org/Vol-1747/IT504_ICBO2016.pdf}
-% is the volume number correct in this citation?
-
+Utecht J, Judkins J, Colvin T Jr., et al. OOSTT: a Resource for Analyzing the Organizational Structures of Trauma Centers and Trauma Systems. CEUR Workshop Proc. 2016 Aug;1747. \href{http://ceur-ws.org/Vol-1747/IT504_ICBO2016.pdf}{http://ceur-ws.org/Vol-1747/IT504\_ICBO2016.pdf}
 
 
 \end{thebibliography}
